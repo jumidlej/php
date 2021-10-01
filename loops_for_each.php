@@ -17,8 +17,7 @@
 
       foreach($registros as $noticia) {
         foreach($noticia as $idx => $item){
-          echo '<h3>' . $idx . ': ' . $item . '</h3>';
-          echo '<p>' . $item . '</p>';
+          echo $idx . ': ' . $item . '<br/>';
         }
       }
 
