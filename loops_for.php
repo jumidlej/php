@@ -5,8 +5,10 @@
   </head>
   <body>
     <?php
-      echo 'Comando echo<br/>';
-      print 'Comando print<hr/>'
+      # for
+      for($num = 0;$num < 10;$num++){
+        echo 'x = ' . $num . '<br/>';
+      }
     ?>
   </body>
 </html>
