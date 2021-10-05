@@ -1,3 +1,24 @@
+<?php
+  require_once "valida_acesso.php";
+?>
+
+<?php
+  $chamados = array();
+
+  $arquivo = fopen('arquivo.hd', 'r');
+
+  // enquanto houver linhas
+  while(!feof($arquivo)) {
+    $registro = explode('#', fgets($arquivo));
+    if(count($registro)<3) continue;
+    if($_SESSION['perfil_id'] != 1 && $registro[0] != $_SESSION['usuario_id']) continue;
+    $chamados[] = $registro;
+    // print_r($registro);
+  }
+  fclose($arquivo)
+  // ..
+?>
+
 <html>
   <head>
     <meta charset="utf-8" />
@@ -21,6 +42,11 @@
         <img src="logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
         App Help Desk
       </a>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="logoff.php">Sair</a>
+        </li>
+      </ul>
     </nav>
 
     <div class="container">    
@@ -33,28 +59,25 @@
             </div>
             
             <div class="card-body">
-              
-              <div class="card mb-3 bg-light">
-                <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
-
-                </div>
-              </div>
+              <?php  
+                foreach($chamados as $c){
+              ?>
 
               <div class="card mb-3 bg-light">
                 <div class="card-body">
-                  <h5 class="card-title">Título do chamado...</h5>
-                  <h6 class="card-subtitle mb-2 text-muted">Categoria</h6>
-                  <p class="card-text">Descrição do chamado...</p>
-
+                  <h5 class="card-title"><?php echo $c[1] ?></h5>
+                  <h6 class="card-subtitle mb-2 text-muted"><?php echo $c[2] ?></h6>
+                  <p class="card-text"><?php echo $c[3] ?></p>
                 </div>
               </div>
+
+              <?php
+                }
+              ?>
 
               <div class="row mt-5">
                 <div class="col-6">
-                  <button class="btn btn-lg btn-warning btn-block" type="submit">Voltar</button>
+                  <a class="btn btn-lg btn-warning btn-block" type="submit" href="home.php">Voltar</a>
                 </div>
               </div>
             </div>
