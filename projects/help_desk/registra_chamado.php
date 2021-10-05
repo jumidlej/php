@@ -8,7 +8,7 @@
   $texto = implode('#', $_POST);
   $texto = $_SESSION['usuario_id'] . '#' . $texto . PHP_EOL;
 
-  $arquivo = fopen('arquivo.hd', 'a');
+  $arquivo = fopen('/opt/lampp/app_help_desk/arquivo.hd', 'a');
   fwrite($arquivo, $texto);
   fclose($arquivo);
 

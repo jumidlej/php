@@ -5,7 +5,7 @@
 <?php
   $chamados = array();
 
-  $arquivo = fopen('arquivo.hd', 'r');
+  $arquivo = fopen('/opt/lampp/app_help_desk/arquivo.hd', 'r');
 
   // enquanto houver linhas
   while(!feof($arquivo)) {
